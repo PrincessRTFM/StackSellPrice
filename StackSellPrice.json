@@ -3,5 +3,6 @@
   "Author": "VariableVixen",
   "Description": "Shows the vendor sell price for the full stack of an item on the tooltip",
   "RepoUrl": "https://github.com/PrincessRTFM/StackSellPrice",
-  "Punchline": "Because multiplication is hard."
+  "Punchline": "Because multiplication is hard.",
+  "IconUrl": "https://raw.githubusercontent.com/PrincessRTFM/StackSellPrice/master/icon.png"
 }
