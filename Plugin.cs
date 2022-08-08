@@ -1,10 +1,11 @@
-namespace StackSellPrice;
+﻿namespace StackSellPrice;
 
 using System;
 using System.Collections.Generic;
 
 using Dalamud.Data;
 using Dalamud.Game.Gui;
+using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.IoC;
@@ -43,7 +44,7 @@ public class Plugin: IDalamudPlugin {
 		// 1,500,000 - 1,999,999: -n/a-
 		// 2,000,000+: quest/event
 		if (itemId is not (>= 1 and < 500_000) and not (>= 1_000_000 and < 1_500_000)) {
-			PluginLog.Information($"Item ID <{itemId}> out of range");
+			//PluginLog.Information($"Item ID <{itemId}> out of range");
 			return;
 		}
 		bool hq = false;
@@ -53,7 +54,7 @@ public class Plugin: IDalamudPlugin {
 		}
 		double price = GameData.GetExcelSheet<Item>()?.GetRow((uint)itemId)?.PriceLow ?? 0;
 		if (price <= 0) {
-			PluginLog.Information($"Price <{price}> out of range");
+			//PluginLog.Information($"Price <{price}> out of range");
 			return;
 		}
 		if (hq) {
@@ -68,23 +69,27 @@ public class Plugin: IDalamudPlugin {
 		if (parts.Length > 1) {
 			if (!uint.TryParse(parts[0], out quantity)) {
 				quantity = 1;
-				PluginLog.Error($"Cannot parse <{parts[0]}> as uint");
+				//PluginLog.Error($"Cannot parse <{parts[0]}> as uint");
 			}
 		}
 		else {
 			quantity = 1;
-			PluginLog.Error($"Failed to split <{quantityLine}> on '/'");
+			//PluginLog.Error($"Failed to split <{quantityLine}> on '/'");
 		}
 		if (quantity > 1) {
-			List<Payload> extra = new() {
+			List<Payload> line = new() {
+				new TextPayload($"{price}{SeIconChar.Gil.ToIconString()}"),
 				new UIForegroundPayload(3),
 				new TextPayload($" (x{quantity:N0} = "),
+				new UIForegroundPayload(0),
 				new UIForegroundPayload(529),
-				new TextPayload((price * quantity).ToString("N0")),
+				new TextPayload($"{price * quantity:N0}{SeIconChar.Gil.ToIconString()}"),
+				new UIForegroundPayload(0),
 				new UIForegroundPayload(3),
 				new TextPayload(")"),
+				new UIForegroundPayload(0),
 			};
-			tooltip[ItemTooltipString.VendorSellPrice] = tooltip[ItemTooltipString.VendorSellPrice].Append(extra);
+			tooltip[ItemTooltipString.VendorSellPrice] = new(line);
 		}
 	}
 
@@ -97,7 +102,10 @@ public class Plugin: IDalamudPlugin {
 		if (disposing) {
 			this.Common.Functions.Tooltips.OnItemTooltip -= this.modifyTooltip;
 			this.Common.Dispose();
+			PluginLog.Information("Unregistered tooltip construction handler!");
 		}
+
+		PluginLog.Information("Goodbye friend :)");
 	}
 
 	public void Dispose() {
