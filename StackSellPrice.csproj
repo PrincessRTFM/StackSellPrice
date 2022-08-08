@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<Authors>VariableVixen</Authors>
-		<Version>1.0</Version>
+		<Version>1.1.0</Version>
 		<Description>Shows the vendor sell price for the full stack of an item on the tooltip</Description>
 		<Copyright>Copyleft Vixen 2022</Copyright>
 		<PackageProjectUrl>https://github.com/PrincessRTFM/StackSellPrice</PackageProjectUrl>
@@ -26,6 +26,7 @@
 		<Deterministic>false</Deterministic>
 		<AssemblyVersion>$(Version).*</AssemblyVersion>
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
