@@ -71,11 +71,16 @@
 			<HintPath>$(DalamudLibPath)Lumina.Excel.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="FFXIVClientStructs">
+			<HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Remove=".gitignore" />
 		<None Remove="bump" />
+		<None Remove="dalamud-plugin-ui-colours.png" />
 		<None Remove="README.md" />
 	</ItemGroup>
 
