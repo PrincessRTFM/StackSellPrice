@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<Product>StackSellPrice</Product>
 		<Authors>VariableVixen</Authors>
-		<Version>1.1.0</Version>
+		<Version>2.0.0</Version>
 		<Description>Shows the vendor sell price for the full stack of an item on the tooltip</Description>
-		<Copyright>Copyleft Vixen 2022</Copyright>
 		<PackageProjectUrl>https://github.com/PrincessRTFM/StackSellPrice</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/PrincessRTFM/StackSellPrice.git</RepositoryUrl>
+		<Copyright>Copyleft Vixen 2022</Copyright>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<OutputType>Library</OutputType>
 		<Platforms>x64</Platforms>
 		<PlatformTarget>x64</PlatformTarget>
-		<PackageId>StackSellPrice</PackageId>
-		<Product>$(PackageId)</Product>
-		<AssemblyName>$(PackageId)</AssemblyName>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<PackageId>$(Product)</PackageId>
+		<AssemblyName>$(Product)</AssemblyName>
+		<TargetFramework>net6-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<NullableContextOptions>enable</NullableContextOptions>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -21,7 +24,7 @@
 		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<RootNamespace>StackSellPrice</RootNamespace>
+		<RootNamespace>$(PackageId)</RootNamespace>
 		<DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
 		<Deterministic>false</Deterministic>
 		<AssemblyVersion>$(Version).*</AssemblyVersion>
@@ -45,8 +48,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DalamudPackager" Version="2.1.7" />
-		<PackageReference Include="XivCommon" Version="5.0.0" />
+		<PackageReference Include="DalamudPackager" Version="2.1.8" />
+		<PackageReference Include="XivCommon" Version="6.0.1" />
 		<Reference Include="Newtonsoft.Json">
 			<HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
@@ -79,7 +82,6 @@
 
 	<ItemGroup>
 		<None Remove=".gitignore" />
-		<None Remove="bump" />
 		<None Remove="dalamud-plugin-ui-colours.png" />
 		<None Remove="README.md" />
 	</ItemGroup>
