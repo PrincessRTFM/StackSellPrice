@@ -21,7 +21,7 @@ jobs:
     runs-on: windows-2022
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: recursive
     - name: Setup MSBuild
@@ -55,3 +55,4 @@ jobs:
       with:
         token: ${{ secrets.PAT }}
         plugin_name: ${{ env.INTERNAL_NAME }}
+        plugin_owners: PrincessRTFM
