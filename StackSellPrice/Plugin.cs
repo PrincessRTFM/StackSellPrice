@@ -1,4 +1,4 @@
-namespace StackSellPrice;
+namespace PrincessRTFM.StackSellPrice;
 
 using System;
 using System.Collections.Generic;
