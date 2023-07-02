@@ -52,16 +52,16 @@ public class Plugin: IDalamudPlugin {
 			itemId -= 1_000_000;
 			hq = true;
 		}
+		else if (itemId is (>= 5604 and <= 5723) or (>= 18006 and <= 18029) or (>= 25186 and <= 25198) or (>= 26727 and <= 26739) or (>= 33917 and <= 33942)) {
+			hq = true; // hack for materia prices being handled as if they're HQ even though they can't actually /be/ HQ, thanks SE, what the fuck
+		}
 		double price = GameData.GetExcelSheet<Item>()?.GetRow((uint)itemId)?.PriceLow ?? 0;
 		if (price <= 0) {
 			//PluginLog.Information($"Price <{price}> out of range");
 			return;
 		}
 		if (hq) {
-			double adjust = price / 10;
-			price += (adjust - Math.Truncate(adjust)) < 0.5
-				? Math.Floor(adjust)
-				: Math.Ceiling(adjust);
+			price += Math.Ceiling(price / 10);
 		}
 		string quantityLine = tooltip[ItemTooltipString.Quantity].TextValue;
 		uint quantity;
