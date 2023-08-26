@@ -3,14 +3,13 @@ namespace PrincessRTFM.StackSellPrice;
 using System;
 using System.Collections.Generic;
 
-using Dalamud.Data;
-using Dalamud.Game.Gui;
 using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.IoC;
 using Dalamud.Logging;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 
 using Lumina.Excel.GeneratedSheets;
 
@@ -23,8 +22,8 @@ public class Plugin: IDalamudPlugin {
 	public string Name { get; } = "StackSellPrice";
 
 	[PluginService] public static DalamudPluginInterface Interface { get; private set; } = null!;
-	[PluginService] public static GameGui GameGui { get; private set; } = null!;
-	[PluginService] public static DataManager GameData { get; private set; } = null!;
+	[PluginService] public static IGameGui GameGui { get; private set; } = null!;
+	[PluginService] public static IDataManager GameData { get; private set; } = null!;
 	public XivCommonBase Common { get; private set; } = null!;
 
 	public Plugin() {
