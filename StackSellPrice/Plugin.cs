@@ -19,17 +19,16 @@ using XivCommon.Functions.Tooltips;
 public class Plugin: IDalamudPlugin {
 	private bool disposed;
 
-	public string Name { get; } = "StackSellPrice";
-
 	[PluginService] public static DalamudPluginInterface Interface { get; private set; } = null!;
 	[PluginService] public static IGameGui GameGui { get; private set; } = null!;
 	[PluginService] public static IDataManager GameData { get; private set; } = null!;
+	[PluginService] public static IPluginLog Log { get; private set; } = null!;
 	public XivCommonBase Common { get; private set; } = null!;
 
 	public Plugin() {
-		this.Common = new(Hooks.Tooltips);
+		this.Common = new(Interface, Hooks.Tooltips);
 		this.Common.Functions.Tooltips.OnItemTooltip += this.modifyTooltip;
-		PluginLog.Information("Registered tooltip construction handler!");
+		Log.Information("Registered tooltip construction handler!");
 	}
 
 	private void modifyTooltip(ItemTooltip tooltip, ulong itemId) {
@@ -101,10 +100,10 @@ public class Plugin: IDalamudPlugin {
 		if (disposing) {
 			this.Common.Functions.Tooltips.OnItemTooltip -= this.modifyTooltip;
 			this.Common.Dispose();
-			PluginLog.Information("Unregistered tooltip construction handler!");
+			Log.Information("Unregistered tooltip construction handler!");
 		}
 
-		PluginLog.Information("Goodbye friend :)");
+		Log.Information("Goodbye friend :)");
 	}
 
 	public void Dispose() {
