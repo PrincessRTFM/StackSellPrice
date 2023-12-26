@@ -1,5 +1,3 @@
-namespace PrincessRTFM.StackSellPrice;
-
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +5,6 @@ using Dalamud.Game.Text;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.IoC;
-using Dalamud.Logging;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 
@@ -15,6 +12,8 @@ using Lumina.Excel.GeneratedSheets;
 
 using XivCommon;
 using XivCommon.Functions.Tooltips;
+
+namespace PrincessRTFM.StackSellPrice;
 
 public class Plugin: IDalamudPlugin {
 	private bool disposed;
